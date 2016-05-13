@@ -1,7 +1,11 @@
 machine:
+  python:
+    version: 2.7
   services:
     - docker
 dependencies:
+  pre:
+    - sudo pip install awsebcli
   override:
     - docker build -t hello-ci-workflow .
 test:
@@ -9,3 +13,8 @@ test:
     - ./node_modules/.bin/mocha
     - docker run -d -p 3000:3000 hello-ci-workflow; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:3000
+deployment:
+  produciton:
+    branch: master
+    commands:
+      - eb deploy hello-ci-workflow-prod
