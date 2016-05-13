@@ -36,3 +36,7 @@ jspm_packages
 .node_repl_history
 
 .idea/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
